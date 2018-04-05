@@ -70,7 +70,7 @@ class DiskReader(Reader):
 
 class GdalReader(DiskReader):
     file_types = ListStr([".grib", ".grib2", '.grb', '.gr1', '.tif', '.vrt',
-        '.hgt', 'flt', 'adf', '.tiff'])
+        '.hgt', '.flt', '.adf', '.tiff'])
     acceptable_data_types = ListStr([])
     acceptable_depths = ListStr([])
     file_name = Str()
