@@ -29,6 +29,15 @@ d_name_to_wkt = {'WGS84' : r'GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",
 d_name_to_epsg = {'WGS84' : 4326,
                   'NAD83': 4269
                  }
+
+class alwaysWGS84:
+   def __init__(self):
+      pass
+   def __getitem__(self, wkt):
+      if not 'WGS' in wkt:
+         print('Your datum does not appear to be WGS84. I''m going to pretend it is.')
+      return 'WGS84'
+
 d_wkt_to_name = {v:k for k, v in d_name_to_wkt.iteritems()}
 d_wkt_to_name[r'GEOGCS["NAD83",DATUM["North_American_Datum_1983",SPHEROID["GRS 1980",6378137,298.2572221010002,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","6269"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4269"]]'] = 'NAD83'
 d_wkt_to_name[r'GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]]'] = 'WGS84'  # afghanistan dem
